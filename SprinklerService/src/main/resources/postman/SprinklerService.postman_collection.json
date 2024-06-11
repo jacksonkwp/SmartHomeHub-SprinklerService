@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "dda83397-f5df-4323-aa57-57f05623b141",
+		"name": "SprinklerService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2660015",
+		"_collection_link": "https://smarthomehub.postman.co/workspace/SmartHomeHub-Workspace~ee59042a-2fa5-42d8-8240-b90838901b10/collection/2660015-dda83397-f5df-4323-aa57-57f05623b141?action=share&source=collection_link&creator=2660015"
+	},
+	"item": [
+		{
+			"name": "All Sprinkler Rules",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/v1/smart-home-hub/sprinkler/rules",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"smart-home-hub",
+						"sprinkler",
+						"rules"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a Sprinkler Rule",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"pawanb1\",\r\n    \"startTime\": \"14:45\",\r\n    \"durationMinutes\": 30\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/smart-home-hub/sprinkler/rule",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"smart-home-hub",
+						"sprinkler",
+						"rule"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

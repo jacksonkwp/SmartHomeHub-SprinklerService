@@ -5,7 +5,11 @@ import edu.baylor.sprinklerservice.service.SprinklerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -18,7 +22,7 @@ public class SprinklerController {
 
     @GetMapping("/rules")
     public ResponseEntity<List<SprinklerRule>> getAllSprinklerRules() {
-        log.info("Request received: getAllSprinklerRules");
+        log.info("GET Request received: getAllSprinklerRules");
 
         List<SprinklerRule> allRules = sprinklerService.getAllRules();
         log.info("{} Sprinkler rules retrieved from DB.", allRules.size());
@@ -28,6 +32,7 @@ public class SprinklerController {
 
     @PostMapping("/rule")
     public ResponseEntity<SprinklerRule> createSprinklerRule(@RequestBody SprinklerRule sprinklerRule) {
+        log.info("POST Request received: createSprinklerRule");
         return ResponseEntity.ok(sprinklerService.createRule(sprinklerRule));
     }
 }
