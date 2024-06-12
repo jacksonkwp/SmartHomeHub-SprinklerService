@@ -1,6 +1,7 @@
 package edu.baylor.sprinklerservice.controller;
 
 import edu.baylor.sprinklerservice.model.SprinklerRule;
+import edu.baylor.sprinklerservice.model.SprinklerStatus;
 import edu.baylor.sprinklerservice.service.SprinklerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,11 @@ import java.util.List;
 @RequestMapping("v1/smart-home-hub/sprinkler")
 public class SprinklerController {
     private final SprinklerService sprinklerService;
+
+    @GetMapping("/{sprinklerId}")
+    public SprinklerStatus getSprinklerStatus(@PathVariable String sprinklerId) {
+        return sprinklerService.getSprinklerStatus(sprinklerId);
+    }
 
     @PostMapping("/{sprinklerId}")
     public void toggleOnOff(@PathVariable String sprinklerId) {

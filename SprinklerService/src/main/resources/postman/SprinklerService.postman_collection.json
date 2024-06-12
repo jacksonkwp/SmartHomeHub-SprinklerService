@@ -8,6 +8,28 @@
 	},
 	"item": [
 		{
+			"name": "Sprinkler Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/v1/smart-home-hub/sprinkler/E22F89YY",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"smart-home-hub",
+						"sprinkler",
+						"E22F89YY"
+					]
+				},
+				"description": "Retrieve all Sprinkler rules programmed by the user"
+			},
+			"response": []
+		},
+		{
 			"name": "All Sprinkler Rules",
 			"request": {
 				"method": "GET",

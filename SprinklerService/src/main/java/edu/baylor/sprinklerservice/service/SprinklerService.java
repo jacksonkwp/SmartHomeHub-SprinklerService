@@ -1,6 +1,7 @@
 package edu.baylor.sprinklerservice.service;
 
 import edu.baylor.sprinklerservice.model.SprinklerRule;
+import edu.baylor.sprinklerservice.model.SprinklerStatus;
 import edu.baylor.sprinklerservice.repository.SprinklerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,5 +29,9 @@ public class SprinklerService {
         // Mock a call to Sprinkle hardware controller
         // Check status & toggle
         // Send notification
+    }
+
+    public SprinklerStatus getSprinklerStatus(String sprinklerId) {
+        return SprinklerStatus.ON;
     }
 }
