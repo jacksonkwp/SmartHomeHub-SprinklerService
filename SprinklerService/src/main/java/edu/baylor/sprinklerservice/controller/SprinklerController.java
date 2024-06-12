@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,11 @@ import java.util.List;
 @RequestMapping("v1/smart-home-hub/sprinkler")
 public class SprinklerController {
     private final SprinklerService sprinklerService;
+
+    @PostMapping("/{sprinklerId}")
+    public void toggleOnOff(@PathVariable String sprinklerId) {
+        sprinklerService.toggleOnOff(sprinklerId);
+    }
 
     @GetMapping("/rules")
     public ResponseEntity<List<SprinklerRule>> getAllSprinklerRules() {
@@ -35,4 +41,10 @@ public class SprinklerController {
         log.info("POST Request received: createSprinklerRule");
         return ResponseEntity.ok(sprinklerService.createRule(sprinklerRule));
     }
+
+    @PostMapping("/valve")
+    public ResponseEntity<Object> alterValveParams() { //TODO
+        return null;
+    }
+
 }

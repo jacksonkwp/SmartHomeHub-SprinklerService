@@ -22,4 +22,11 @@ public class SprinklerService {
         log.info("Fetching all sprinkler rules from DB!");
         return sprinklerRepository.findAll();
     }
+
+
+    public void toggleOnOff(String sprinklerId) {
+        // Mock a call to Sprinkle hardware controller
+        // Check status & toggle
+        // Send notification
+    }
 }

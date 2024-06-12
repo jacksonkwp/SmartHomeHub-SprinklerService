@@ -1,10 +1,6 @@
 package edu.baylor.sprinklerservice.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,11 +23,9 @@ public class SprinklerRule {
     @Column(nullable = false)
     private String userId;
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
-
-    @UpdateTimestamp
-    private LocalDateTime lastUpdatedAt;
+    @NotNull
+    @Column(nullable = false)
+    private String sprinklerDeviceId;
 
     @NotNull
     @Column(nullable = false)
@@ -40,4 +34,13 @@ public class SprinklerRule {
     @NotNull
     @Column(nullable = false)
     private int durationMinutes;
+
+    @ManyToOne
+    private Sprinkler sprinkler;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    private LocalDateTime lastUpdatedAt;
 }

@@ -4,7 +4,7 @@
 		"name": "SprinklerService",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "2660015",
-		"_collection_link": "https://smarthomehub.postman.co/workspace/SmartHomeHub-Workspace~ee59042a-2fa5-42d8-8240-b90838901b10/collection/2660015-dda83397-f5df-4323-aa57-57f05623b141?action=share&source=collection_link&creator=2660015"
+		"_collection_link": "https://smarthomehub.postman.co/workspace/ee59042a-2fa5-42d8-8240-b90838901b10/collection/2660015-dda83397-f5df-4323-aa57-57f05623b141?action=share&source=collection_link&creator=2660015"
 	},
 	"item": [
 		{
@@ -24,7 +24,8 @@
 						"sprinkler",
 						"rules"
 					]
-				}
+				},
+				"description": "Retrieve all Sprinkler rules programmed by the user"
 			},
 			"response": []
 		},
@@ -35,7 +36,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"userId\": \"pawanb1\",\r\n    \"startTime\": \"14:45\",\r\n    \"durationMinutes\": 30\r\n}",
+					"raw": "{\r\n    \"userId\": \"pawanb1\",\r\n    \"startTime\": \"14:45\",\r\n    \"sprinklerDeviceId\": \"M19N5F14E27B6\",\r\n    \"durationMinutes\": 30\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -54,7 +55,8 @@
 						"sprinkler",
 						"rule"
 					]
-				}
+				},
+				"description": "Add a rule to enable automatic sprinkling. Allows users to set a start time and sprinkling duration for a sprinkler device."
 			},
 			"response": []
 		}
