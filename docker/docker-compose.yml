@@ -1,12 +1,22 @@
 services:
+  config-server:
+    build:
+      context: ../config-server
+    container_name: config-server
+    environment:
+      SERVER_PORT: 8071
+    ports:
+      - 8071:8071
+
   sprinkler-service:
     build:
-      context: .
+      context: ../SprinklerService
     container_name: sprinkler-service
     environment:
       SPRING_PROFILES_ACTIVE: "dev"
     restart: on-failure
     depends_on:
+      - config-server
       - db-dev
       - db-prod
     ports:
