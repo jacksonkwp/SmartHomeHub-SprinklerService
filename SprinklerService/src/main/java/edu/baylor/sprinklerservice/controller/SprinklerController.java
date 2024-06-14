@@ -1,17 +1,13 @@
 package edu.baylor.sprinklerservice.controller;
 
+import edu.baylor.sprinklerservice.model.Sprinkler;
 import edu.baylor.sprinklerservice.model.SprinklerRule;
 import edu.baylor.sprinklerservice.model.SprinklerStatus;
 import edu.baylor.sprinklerservice.service.SprinklerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,14 +18,41 @@ import java.util.List;
 public class SprinklerController {
     private final SprinklerService sprinklerService;
 
-    @GetMapping("/{sprinklerId}")
+    @GetMapping("/all")
+    public ResponseEntity<List<Sprinkler>> getAllSprinklers() {
+        log.info("GET Request received: getAllSprinklers");
+        return ResponseEntity.ok(sprinklerService.getAllSprinklers());
+    }
+
+    @GetMapping("/{deviceId}")
+    public ResponseEntity<Sprinkler> getSprinkler(@PathVariable String deviceId) {
+        return ResponseEntity.ok(sprinklerService.getSprinklerByDeviceId(deviceId));
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<Sprinkler> addSprinkler(@RequestBody Sprinkler sprinkler) {
+        return ResponseEntity.ok(sprinklerService.addSprinkler(sprinkler));
+    }
+
+    @PatchMapping("/update/{deviceId}")
+    public ResponseEntity<Sprinkler> updateSprinkler(@PathVariable String deviceId, @RequestBody Sprinkler sprinkler) {
+        return ResponseEntity.ok(sprinklerService.updateSprinkler(deviceId, sprinkler));
+    }
+
+    @DeleteMapping("/{deviceId}")
+    public ResponseEntity<Object> deleteSprinkler(@PathVariable String deviceId) {
+        sprinklerService.deleteSprinkler(deviceId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/status/{sprinklerId}")
     public SprinklerStatus getSprinklerStatus(@PathVariable String sprinklerId) {
         return sprinklerService.getSprinklerStatus(sprinklerId);
     }
 
-    @PostMapping("/{sprinklerId}")
-    public void toggleOnOff(@PathVariable String sprinklerId) {
-        sprinklerService.toggleOnOff(sprinklerId);
+    @PostMapping("/toggle/{sprinklerId}")
+    public SprinklerStatus toggleOnOff(@PathVariable String sprinklerId) {
+        return sprinklerService.toggleOnOff(sprinklerId);
     }
 
     @GetMapping("/rules")
@@ -48,9 +71,14 @@ public class SprinklerController {
         return ResponseEntity.ok(sprinklerService.createRule(sprinklerRule));
     }
 
+    @PatchMapping("/rule/{ruleId}")
+    public ResponseEntity<SprinklerRule> updateSprinklerRule(@PathVariable Long ruleId, @RequestBody SprinklerRule sprinklerRule) {
+        log.info("Patch Request received: updateSprinklerRule");
+        return ResponseEntity.ok(sprinklerService.updateRule(ruleId, sprinklerRule));
+    }
+
     @PostMapping("/valve")
     public ResponseEntity<Object> alterValveParams() { //TODO
         return null;
     }
-
 }

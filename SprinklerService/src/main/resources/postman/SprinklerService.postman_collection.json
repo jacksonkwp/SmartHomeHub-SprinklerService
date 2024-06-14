@@ -4,16 +4,25 @@
 		"name": "SprinklerService",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "2660015",
-		"_collection_link": "https://smarthomehub.postman.co/workspace/ee59042a-2fa5-42d8-8240-b90838901b10/collection/2660015-dda83397-f5df-4323-aa57-57f05623b141?action=share&source=collection_link&creator=2660015"
+		"_collection_link": "https://smarthomehub.postman.co/workspace/SmartHomeHub-Workspace~ee59042a-2fa5-42d8-8240-b90838901b10/collection/2660015-dda83397-f5df-4323-aa57-57f05623b141?action=share&source=collection_link&creator=2660015"
 	},
 	"item": [
 		{
-			"name": "Sprinkler Status",
+			"name": "Add a Sprinkler",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"deviceId\": \"1EHU89GGYF2\",\r\n    \"locationAlias\": \"Baylor Ballpark\",\r\n    \"locationCoordinates\": \"31°33'05.1\\\"N 97°06'28.0\\\"W\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:8080/v1/smart-home-hub/sprinkler/E22F89YY",
+					"raw": "localhost:8080/v1/smart-home-hub/sprinkler/add",
 					"host": [
 						"localhost"
 					],
@@ -22,7 +31,105 @@
 						"v1",
 						"smart-home-hub",
 						"sprinkler",
-						"E22F89YY"
+						"add"
+					]
+				},
+				"description": "Retrieve all Sprinkler rules programmed by the user"
+			},
+			"response": []
+		},
+		{
+			"name": "All Sprinklers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/v1/smart-home-hub/sprinkler/all",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"smart-home-hub",
+						"sprinkler",
+						"all"
+					]
+				},
+				"description": "Retrieve all Sprinkler rules programmed by the user"
+			},
+			"response": []
+		},
+		{
+			"name": "Sprinkler by DeviceId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/v1/smart-home-hub/sprinkler/K22N5F14E27A5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"smart-home-hub",
+						"sprinkler",
+						"K22N5F14E27A5"
+					]
+				},
+				"description": "Retrieve all Sprinkler rules programmed by the user"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Sprinkler",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"locationAlias\": \"BACK YARD\",\r\n    \"locationCoordinates\": \"30°38'23.3\\\"N 96°28'09.0\\\"W\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/smart-home-hub/sprinkler/update/K22N5F14E27A5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"smart-home-hub",
+						"sprinkler",
+						"update",
+						"K22N5F14E27A5"
+					]
+				},
+				"description": "Retrieve all Sprinkler rules programmed by the user"
+			},
+			"response": []
+		},
+		{
+			"name": "Sprinkler by DeviceId",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/v1/smart-home-hub/sprinkler/1EHU89GGYF2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"smart-home-hub",
+						"sprinkler",
+						"1EHU89GGYF2"
 					]
 				},
 				"description": "Retrieve all Sprinkler rules programmed by the user"
@@ -52,6 +159,61 @@
 			"response": []
 		},
 		{
+			"name": "Sprinkler Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/v1/smart-home-hub/sprinkler/status/E22F89YY",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"smart-home-hub",
+						"sprinkler",
+						"status",
+						"E22F89YY"
+					]
+				},
+				"description": "Retrieve all Sprinkler rules programmed by the user"
+			},
+			"response": []
+		},
+		{
+			"name": "Toggle Sprinkler On-Off",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"pawanb1\",\r\n    \"startTime\": \"14:45\",\r\n    \"sprinklerDeviceId\": \"M19N5F14E27B6\",\r\n    \"durationMinutes\": 30\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/smart-home-hub/sprinkler/toggle/sprinklerId",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"smart-home-hub",
+						"sprinkler",
+						"toggle",
+						"sprinklerId"
+					]
+				},
+				"description": "Add a rule to enable automatic sprinkling. Allows users to set a start time and sprinkling duration for a sprinkler device."
+			},
+			"response": []
+		},
+		{
 			"name": "Add a Sprinkler Rule",
 			"request": {
 				"method": "POST",
@@ -76,6 +238,38 @@
 						"smart-home-hub",
 						"sprinkler",
 						"rule"
+					]
+				},
+				"description": "Add a rule to enable automatic sprinkling. Allows users to set a start time and sprinkling duration for a sprinkler device."
+			},
+			"response": []
+		},
+		{
+			"name": "Update Sprinkler Rule",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sprinklerDeviceId\": \"K22N5F14E27A5\",\r\n    \"startTime\": \"20:45\",\r\n    \"durationMinutes\": 40\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/smart-home-hub/sprinkler/rule/9999998",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"smart-home-hub",
+						"sprinkler",
+						"rule",
+						"9999998"
 					]
 				},
 				"description": "Add a rule to enable automatic sprinkling. Allows users to set a start time and sprinkling duration for a sprinkler device."

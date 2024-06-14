@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>edu.baylor</groupId>
-	<artifactId>SprinklerService</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>SprinklerService</name>
+	<artifactId>sprinkler-service</artifactId>
+	<version>0.0.1</version>
+	<name>sprinkler-service</name>
 	<description>SprinklerService</description>
 	<properties>
 		<java.version>21</java.version>
@@ -59,6 +59,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 

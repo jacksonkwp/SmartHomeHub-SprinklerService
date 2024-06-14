@@ -1,15 +1,11 @@
 package edu.baylor.sprinklerservice.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -17,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Sprinkler {
 
     @Id
@@ -24,13 +21,15 @@ public class Sprinkler {
     private Long id;
 
     @NotNull
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String deviceId;
 
     private String locationAlias;
 
     private String locationCoordinates;
 
-    @OneToMany(mappedBy = "sprinkler")
+    @OneToMany(mappedBy = "sprinkler", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @JsonIgnore
     private List<SprinklerRule> rules;
 }

@@ -1,0 +1,22 @@
+services:
+  app:
+    build:
+      context: .
+    container_name: app
+    depends_on:
+      - db
+    ports:
+      - 8080:8080
+  db:
+    image: postgres
+    container_name: db
+    restart: always
+    environment:
+      POSTGRES_DB: sprinkler
+      POSTGRES_USER: adminuser
+      POSTGRES_PASSWORD: postgrespassword
+    volumes:
+      - ./src/main/resources/init.sql:/docker-entrypoint-initdb.d/1-init.sql
+      - ./src/main/resources/data.sql:/docker-entrypoint-initdb.d/2-data.sql
+    ports:
+      - 5432:5432
