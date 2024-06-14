@@ -17,14 +17,14 @@ services:
     restart: on-failure
     depends_on:
       - config-server
-      - db-dev
-      - db-prod
+      - sprinkler-db-dev
+      - sprinkler-db-prod
     ports:
       - 8080:8080
 
-  db-dev:
+  sprinkler-db-dev:
     image: postgres
-    container_name: db-dev
+    container_name: sprinkler-db-dev
     restart: always
     environment:
       POSTGRES_DB: sprinkler_dev
@@ -36,9 +36,9 @@ services:
     ports:
       - 5432:5432
 
-  db-prod:
+  sprinkler-db-prod:
     image: postgres
-    container_name: db-prod
+    container_name: sprinkler-db-prod
     restart: always
     environment:
       POSTGRES_DB: sprinkler_prod
