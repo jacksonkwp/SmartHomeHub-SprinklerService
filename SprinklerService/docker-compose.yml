@@ -3,6 +3,8 @@ services:
     build:
       context: .
     container_name: sprinkler-service
+    environment:
+      SPRING_PROFILES_ACTIVE: "dev"
     restart: on-failure
     depends_on:
       - db-dev
