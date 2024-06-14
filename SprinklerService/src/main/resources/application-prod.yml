@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    name: sprinkler
+    url: jdbc:postgresql://db-prod:5432/sprinkler_prod
+    username: produser
+    password: postgrespassword

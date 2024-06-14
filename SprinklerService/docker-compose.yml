@@ -1,22 +1,39 @@
 services:
-  app:
+  sprinkler-service:
     build:
       context: .
-    container_name: app
+    container_name: sprinkler-service
+    restart: on-failure
     depends_on:
-      - db
+      - db-dev
+      - db-prod
     ports:
       - 8080:8080
-  db:
+
+  db-dev:
     image: postgres
-    container_name: db
+    container_name: db-dev
     restart: always
     environment:
-      POSTGRES_DB: sprinkler
-      POSTGRES_USER: adminuser
+      POSTGRES_DB: sprinkler_dev
+      POSTGRES_USER: devuser
       POSTGRES_PASSWORD: postgrespassword
     volumes:
       - ./src/main/resources/init.sql:/docker-entrypoint-initdb.d/1-init.sql
       - ./src/main/resources/data.sql:/docker-entrypoint-initdb.d/2-data.sql
     ports:
       - 5432:5432
+
+  db-prod:
+    image: postgres
+    container_name: db-prod
+    restart: always
+    environment:
+      POSTGRES_DB: sprinkler_prod
+      POSTGRES_USER: produser
+      POSTGRES_PASSWORD: postgrespassword
+    volumes:
+      - ./src/main/resources/init.sql:/docker-entrypoint-initdb.d/1-init.sql
+      - ./src/main/resources/data.sql:/docker-entrypoint-initdb.d/2-data.sql
+    ports:
+      - 5433:5432

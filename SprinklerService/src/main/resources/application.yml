@@ -4,12 +4,6 @@ spring:
   profiles:
     active: dev
 
-  datasource:
-    name: sprinkler
-    url: jdbc:postgresql://db:5432/sprinkler
-    username: adminuser
-    password: postgrespassword
-
   jpa:
     hibernate:
       ddl-auto: none
