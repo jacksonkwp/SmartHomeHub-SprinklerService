@@ -7,7 +7,19 @@ services:
       SERVER_PORT: 8071
     ports:
       - 8071:8071
-
+######################################################
+  keycloak:
+    image: quay.io/keycloak/keycloak:25.0.1
+    container_name: keycloak
+    restart: always
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    command:
+      - start-dev
+    ports:
+      - 8080:8080
+######################################################
   sprinkler-service:
     build:
       context: ../SprinklerService
@@ -20,8 +32,8 @@ services:
       - sprinkler-db-dev
       - sprinkler-db-prod
     ports:
-      - 8080:8080
-
+      - 8081:8081
+######################################################
   sprinkler-db-dev:
     image: postgres
     container_name: sprinkler-db-dev
@@ -35,7 +47,6 @@ services:
       - ./src/main/resources/data.sql:/docker-entrypoint-initdb.d/2-data.sql
     ports:
       - 5432:5432
-
   sprinkler-db-prod:
     image: postgres
     container_name: sprinkler-db-prod
