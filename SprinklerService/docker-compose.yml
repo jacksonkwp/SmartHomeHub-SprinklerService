@@ -22,7 +22,7 @@ services:
 ######################################################
   sprinkler-service:
     build:
-      context: ../SprinklerService
+      context: SprinklerService
     container_name: sprinkler-service
     environment:
       SPRING_PROFILES_ACTIVE: "dev"
