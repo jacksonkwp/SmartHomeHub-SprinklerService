@@ -1,3 +1,6 @@
+server:
+  port: 8090
+
 spring:
   application:
     name: sprinkler-service
@@ -5,6 +8,24 @@ spring:
     active: dev
   config:
     import: configserver:http://config-server:8071
-
-server:
-  port: 8081
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://keycloak:8080/realms/smarthomehub
+          jwk-set-uri: http://keycloak:8080/realms/smarthomehub/protocol/openid-connect/certs
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://keycloak:8080/realms/smarthomehub
+        registration:
+          keycloak:
+            client-name: sprinkler-service
+            client-id: sprinkler-service
+            authorization-grant-type: authorization_code
+            client-secret: LupcWMGyTzWUrKIBTeXv6hbRNuSFXHqQ
+            scope:
+              - openid
+              - offline_access
+              - profile
+              - roles

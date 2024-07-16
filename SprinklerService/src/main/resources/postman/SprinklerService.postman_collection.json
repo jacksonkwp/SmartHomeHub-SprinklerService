@@ -14,7 +14,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"deviceId\": \"1EHU89GGYF2\",\r\n    \"locationAlias\": \"Baylor Ballpark\",\r\n    \"locationCoordinates\": \"31°33'05.1\\\"N 97°06'28.0\\\"W\"\r\n}",
+					"raw": "{\r\n    \"deviceId\": \"1EHU89GGYF3\",\r\n    \"locationAlias\": \"Baylor Ballpark\",\r\n    \"locationCoordinates\": \"31°33'05.1\\\"N 97°06'28.0\\\"W\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -22,11 +22,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/v1/smart-home-hub/sprinkler/add",
+					"raw": "{{sprinkler-service-host}}/v1/smart-home-hub/sprinkler/add",
 					"host": [
-						"localhost"
+						"{{sprinkler-service-host}}"
 					],
-					"port": "8080",
 					"path": [
 						"v1",
 						"smart-home-hub",
@@ -44,12 +43,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/v1/smart-home-hub/sprinkler/all",
+					"raw": "{{api-gateway}}/sprinkler/v1/smart-home-hub/sprinkler/all",
 					"host": [
-						"localhost"
+						"{{api-gateway}}"
 					],
-					"port": "8080",
 					"path": [
+						"sprinkler",
 						"v1",
 						"smart-home-hub",
 						"sprinkler",
@@ -66,12 +65,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/v1/smart-home-hub/sprinkler/K22N5F14E27A5",
+					"raw": "{{api-gateway}}/sprinkler/v1/smart-home-hub/sprinkler/K22N5F14E27A5",
 					"host": [
-						"localhost"
+						"{{api-gateway}}"
 					],
-					"port": "8080",
 					"path": [
+						"sprinkler",
 						"v1",
 						"smart-home-hub",
 						"sprinkler",
@@ -97,12 +96,12 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/v1/smart-home-hub/sprinkler/update/K22N5F14E27A5",
+					"raw": "{{api-gateway}}/sprinkler/v1/smart-home-hub/sprinkler/update/K22N5F14E27A5",
 					"host": [
-						"localhost"
+						"{{api-gateway}}"
 					],
-					"port": "8080",
 					"path": [
+						"sprinkler",
 						"v1",
 						"smart-home-hub",
 						"sprinkler",
@@ -120,12 +119,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/v1/smart-home-hub/sprinkler/1EHU89GGYF2",
+					"raw": "{{api-gateway}}/sprinkler/v1/smart-home-hub/sprinkler/1EHU89GGYF2",
 					"host": [
-						"localhost"
+						"{{api-gateway}}"
 					],
-					"port": "8080",
 					"path": [
+						"sprinkler",
 						"v1",
 						"smart-home-hub",
 						"sprinkler",
@@ -142,12 +141,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/v1/smart-home-hub/sprinkler/rules",
+					"raw": "{{api-gateway}}/sprinkler/v1/smart-home-hub/sprinkler/rules",
 					"host": [
-						"localhost"
+						"{{api-gateway}}"
 					],
-					"port": "8080",
 					"path": [
+						"sprinkler",
 						"v1",
 						"smart-home-hub",
 						"sprinkler",
@@ -164,12 +163,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/v1/smart-home-hub/sprinkler/status/E22F89YY",
+					"raw": "{{api-gateway}}/sprinkler/v1/smart-home-hub/sprinkler/status/E22F89YY",
 					"host": [
-						"localhost"
+						"{{api-gateway}}"
 					],
-					"port": "8080",
 					"path": [
+						"sprinkler",
 						"v1",
 						"smart-home-hub",
 						"sprinkler",
@@ -196,12 +195,12 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/v1/smart-home-hub/sprinkler/toggle/sprinklerId",
+					"raw": "{{api-gateway}}/sprinkler/v1/smart-home-hub/sprinkler/toggle/sprinklerId",
 					"host": [
-						"localhost"
+						"{{api-gateway}}"
 					],
-					"port": "8080",
 					"path": [
+						"sprinkler",
 						"v1",
 						"smart-home-hub",
 						"sprinkler",
@@ -228,12 +227,12 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/v1/smart-home-hub/sprinkler/rule",
+					"raw": "{{api-gateway}}/sprinkler/v1/smart-home-hub/sprinkler/rule",
 					"host": [
-						"localhost"
+						"{{api-gateway}}"
 					],
-					"port": "8080",
 					"path": [
+						"sprinkler",
 						"v1",
 						"smart-home-hub",
 						"sprinkler",
@@ -259,12 +258,12 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/v1/smart-home-hub/sprinkler/rule/9999998",
+					"raw": "{{api-gateway}}/sprinkler/v1/smart-home-hub/sprinkler/rule/9999998",
 					"host": [
-						"localhost"
+						"{{api-gateway}}"
 					],
-					"port": "8080",
 					"path": [
+						"sprinkler",
 						"v1",
 						"smart-home-hub",
 						"sprinkler",
@@ -275,6 +274,160 @@
 				"description": "Add a rule to enable automatic sprinkling. Allows users to set a start time and sprinkling duration for a sprinkler device."
 			},
 			"response": []
+		},
+		{
+			"name": "dev Config",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8071/sprinkler-service/dev",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8071",
+					"path": [
+						"sprinkler-service",
+						"dev"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "prod Config",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8071/sprinkler-service/prod",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8071",
+					"path": [
+						"sprinkler-service",
+						"prod"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "refreshRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "tokenRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "authRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "tokenName",
+				"value": "sprinklerServiceToken",
+				"type": "string"
+			},
+			{
+				"key": "challengeAlgorithm",
+				"value": "S256",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "super.user",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "password1",
+				"type": "string"
+			},
+			{
+				"key": "grant_type",
+				"value": "client_credentials",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "{{sprinkler-secret}}",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{sprinkler-client}}",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "client_authentication",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "http://keycloak:8080/realms/smarthomehub/protocol/openid-connect/token",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "sprinkler-service-host",
+			"value": "http://localhost:8090",
+			"type": "string"
+		},
+		{
+			"key": "api-gateway",
+			"value": "http://localhost:8072",
+			"type": "string"
+		},
+		{
+			"key": "sprinkler-client",
+			"value": "sprinkler-service",
+			"type": "string"
+		},
+		{
+			"key": "sprinkler-secret",
+			"value": "LupcWMGyTzWUrKIBTeXv6hbRNuSFXHqQ",
+			"type": "string"
 		}
 	]
 }
