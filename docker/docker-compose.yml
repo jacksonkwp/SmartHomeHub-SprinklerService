@@ -1,0 +1,63 @@
+services:
+  config-server:
+    build:
+      context: ../config-server
+    container_name: config-server
+    environment:
+      SERVER_PORT: 8071
+    ports:
+      - 8071:8071
+######################################################
+  keycloak:
+    image: quay.io/keycloak/keycloak:25.0.1
+    container_name: keycloak
+    restart: always
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    command:
+      - start-dev
+    ports:
+      - 8080:8080
+######################################################
+  sprinkler-service:
+    build:
+      context: ../SprinklerService
+    container_name: sprinkler-service
+    environment:
+      SPRING_PROFILES_ACTIVE: "dev"
+    restart: on-failure
+    depends_on:
+      - config-server
+      - keycloak
+      - sprinkler-db-dev
+      - sprinkler-db-prod
+    ports:
+      - 8090:8090
+######################################################
+  sprinkler-db-dev:
+    image: postgres
+    container_name: sprinkler-db-dev
+    restart: always
+    environment:
+      POSTGRES_DB: sprinkler_dev
+      POSTGRES_USER: devuser
+      POSTGRES_PASSWORD: postgrespassword
+    volumes:
+      - ./src/main/resources/init.sql:/docker-entrypoint-initdb.d/1-init.sql
+      - ./src/main/resources/data.sql:/docker-entrypoint-initdb.d/2-data.sql
+    ports:
+      - 5432:5432
+  sprinkler-db-prod:
+    image: postgres
+    container_name: sprinkler-db-prod
+    restart: always
+    environment:
+      POSTGRES_DB: sprinkler_prod
+      POSTGRES_USER: produser
+      POSTGRES_PASSWORD: postgrespassword
+    volumes:
+      - ./src/main/resources/init.sql:/docker-entrypoint-initdb.d/1-init.sql
+      - ./src/main/resources/data.sql:/docker-entrypoint-initdb.d/2-data.sql
+    ports:
+      - 5433:5432

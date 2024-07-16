@@ -1,28 +1,31 @@
+server:
+  port: 8090
+
 spring:
   application:
-    name: SprinklerService
+    name: sprinkler-service
   profiles:
     active: dev
-
-  datasource:
-    name: sprinkler
-    url: jdbc:h2:mem:sprinkler;DB_CLOSE_DELAY=-1
-    username: sa
-    password:
-
-  jpa:
-    hibernate:
-      ddl-auto: create
-    properties:
-      hibernate:
-        show_sql: false
-        format_sql: true
-    defer-datasource-initialization: true
-    generate-ddl: true
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-  sql:
-    init:
-      mode: always
+  config:
+    import: configserver:http://config-server:8071
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://keycloak:8080/realms/smarthomehub
+          jwk-set-uri: http://keycloak:8080/realms/smarthomehub/protocol/openid-connect/certs
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://keycloak:8080/realms/smarthomehub
+        registration:
+          keycloak:
+            client-name: sprinkler-service
+            client-id: sprinkler-service
+            authorization-grant-type: authorization_code
+            client-secret: LupcWMGyTzWUrKIBTeXv6hbRNuSFXHqQ
+            scope:
+              - openid
+              - offline_access
+              - profile
+              - roles
