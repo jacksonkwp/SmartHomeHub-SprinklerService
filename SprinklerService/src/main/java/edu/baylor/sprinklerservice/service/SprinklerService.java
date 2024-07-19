@@ -1,10 +1,12 @@
 package edu.baylor.sprinklerservice.service;
 
+import edu.baylor.sprinklerservice.client.NotificationServiceDiscoveryClient;
 import edu.baylor.sprinklerservice.model.Sprinkler;
 import edu.baylor.sprinklerservice.model.SprinklerRule;
 import edu.baylor.sprinklerservice.model.SprinklerStatus;
 import edu.baylor.sprinklerservice.repository.SprinklerRepository;
 import edu.baylor.sprinklerservice.repository.SprinklerRuleRepository;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ import java.util.List;
 public class SprinklerService {
     private final SprinklerRuleRepository sprinklerRuleRepository;
     private final SprinklerRepository sprinklerRepository;
+    private final NotificationServiceDiscoveryClient notificationServiceDiscoveryClient;
 
     public SprinklerRule createRule(SprinklerRule sprinklerRule) {
         return sprinklerRuleRepository.save(sprinklerRule);
@@ -35,6 +38,20 @@ public class SprinklerService {
             // send notification
         return SprinklerStatus.ON;
     }
+
+    @CircuitBreaker(name = "notificationCB", fallbackMethod = "notificationFallback")
+    public Sprinkler addSprinkler(Sprinkler sprinkler, String authToken) {
+        Sprinkler savedSprinkler = sprinklerRepository.save(sprinkler);
+        log.info(notificationServiceDiscoveryClient
+                .sendNotification(authToken, "New Sprinkler Added: " + savedSprinkler.getDeviceId()));
+
+        return savedSprinkler;
+    }
+    private Sprinkler notificationFallback(Sprinkler sprinkler, String authToken, Throwable throwable) {
+        log.info("Triggered notificationFallback when adding a sprinkler");
+        return getSprinklerByDeviceId(sprinkler.getDeviceId());
+    }
+
 
     public SprinklerStatus getSprinklerStatus(String sprinklerId) {
         return SprinklerStatus.ON;
@@ -59,10 +76,6 @@ public class SprinklerService {
 
     public Sprinkler getSprinklerByDeviceId(String deviceId) {
         return sprinklerRepository.findAllByDeviceId(deviceId).getFirst();
-    }
-
-    public Sprinkler addSprinkler(Sprinkler sprinkler) {
-        return sprinklerRepository.save(sprinkler);
     }
 
     public void deleteSprinkler(String deviceId) {

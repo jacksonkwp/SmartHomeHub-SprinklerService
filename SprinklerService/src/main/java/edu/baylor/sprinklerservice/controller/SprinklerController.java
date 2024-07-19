@@ -7,6 +7,7 @@ import edu.baylor.sprinklerservice.service.SprinklerService;
 import jakarta.annotation.security.RolesAllowed;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,8 +35,9 @@ public class SprinklerController {
 
     @PostMapping("/add")
     @RolesAllowed({"USER", "ADMIN"})
-    public ResponseEntity<Sprinkler> addSprinkler(@RequestBody Sprinkler sprinkler) {
-        return ResponseEntity.ok(sprinklerService.addSprinkler(sprinkler));
+    public ResponseEntity<Sprinkler> addSprinkler(@RequestBody Sprinkler sprinkler,
+                                                  @RequestHeader(HttpHeaders.AUTHORIZATION) String authToken) {
+        return ResponseEntity.ok(sprinklerService.addSprinkler(sprinkler, authToken));
     }
 
     @PatchMapping("/update/{deviceId}")

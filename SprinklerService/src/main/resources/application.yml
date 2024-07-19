@@ -29,3 +29,24 @@ spring:
               - offline_access
               - profile
               - roles
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      registerHealthIndicator: true
+      slidingWindowSize: 10
+      minimumNumberOfCalls: 5
+      permittedNumberOfCallsInHalfOpenState: 3
+      automaticTransitionFromOpenToHalfOpenEnabled: true
+      waitDurationInOpenState: 3s
+      failureRateThreshold: 20
+      eventConsumerBufferSize: 10
+      recordExceptions:
+        - org.springframework.web.client.HttpServerErrorException
+        - org.springframework.web.client.ResourceAccessException
+        - java.util.concurrent.TimeoutException
+        - java.io.IOException
+  #      ignoreExceptions:
+  instances:
+    notificationCB:
+      baseConfig: default
