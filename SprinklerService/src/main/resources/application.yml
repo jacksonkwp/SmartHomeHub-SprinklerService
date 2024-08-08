@@ -8,6 +8,23 @@ spring:
     active: dev
   config:
     import: configserver:http://config-server:8071
+
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: kafka-server:9092
+          auto-create-topics: true
+          auto-add-partitions: true
+        bindings:
+          sprinklerEventSupplier-out-0:
+            producer:
+              sync: true
+      bindings:
+        sprinklerEventSupplier-out-0:
+          destination: sprinkler-event-topic
+      output-bindings: sprinklerEventSupplier-out-0
+
   security:
     oauth2:
       resourceserver:
